@@ -3,8 +3,8 @@ title: "Reproducible Research Project Week 2"
 author: "Joerg Heintz"
 date: "3/9/2017"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ###Setting global options
@@ -30,7 +30,7 @@ The total number of steps taken by this persons within the month period were `r 
 
 #####Histogram
 The histogram illustrates the frequency of steps per day [NA considered na.rm=FALSE].
-```{r,  fig.width=6, fig.height=4}
+```{r,  fig.width=5, fig.height=3}
 hist(tapply(mydata$steps, mydata$date, sum, na.rm=FALSE),
      main = "Frequency of steps taken per day",
      xlab = "Steps per day",
@@ -62,7 +62,7 @@ print(xt, type = 'html', include.rownames = FALSE)
 
 
 #Average daily activity pattern
-```{r, echo=TRUE}
+```{r, echo=TRUE, fig.width=5, fig.height=3}
 library(data.table)
 library(ggplot2)
 StepsByInterval<-data.frame(tapply(mydata$steps, mydata$interval, mean, na.rm = TRUE))
@@ -112,7 +112,7 @@ ManData<-mydata
 
 #####Histogram
 The histogram illustrates the frequency of steps per day [NA filled with step means per interval].
-```{r,  fig.width=6, fig.height=4}
+```{r,  fig.width=5, fig.height=3}
 hist(tapply(ManData$steps, ManData$date, sum, na.rm=FALSE),
      main = "Frequency of steps taken per day",
      xlab = "Steps per day",
@@ -145,7 +145,7 @@ print(xt, type = 'html', include.rownames = FALSE)
 By filling in the missing values the total number of steps increased from  570608 to 656704. Mean and median are now very close together. The mean is actually a bit greater that the median. The histrogram looks in its from very similar but increased in the center by about 8000 steps per day.  
 
 ##Differences in activity patterns between weekdays and weekends
-```{r,  results='asis'}
+```{r,  results='asis', fig.width=5,fig.height=3}
 library(lattice)
 # convert dates into the date-format 
 mydata$date <- as.Date(mydata$date ,format="%Y-%m-%d")
