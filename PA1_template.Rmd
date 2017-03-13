@@ -3,8 +3,8 @@ title: "Reproducible Research Project Week 2"
 author: "Joerg Heintz"
 date: "3/9/2017"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ###Setting global options
@@ -174,17 +174,6 @@ StepsWeekdays<-data.frame(tapply(mydata[mydata$wd_we=="Weekday", ]$steps, mydata
 StepsWeekdays<-cbind(data.frame(rownames(StepsWeekdays)), StepsWeekdays)
 colnames(StepsWeekdays)<-c("interval", "steps")
 
-# panel plot
-par(mfrow=c(2,1))
-#weekdays
-xwd<-as.numeric(as.character(StepsWeekdays$interval))
-ywd<-as.numeric(as.character(StepsWeekdays$steps))
-plot(xwd, ywd, type="l", col = "red", xlab = "Interval Weekdays", ylab = "Average Steps")
-# weekends
-xwe<-as.numeric(as.character(StepsWeekend$interval))
-ywe<-as.numeric(as.character(StepsWeekend$steps))
-plot(xwe, ywe, type="l", col = "red", xlab = "Interval Weekends", ylab = "Average Steps")
-
 library(lattice)
 df<-data.frame(tapply(mydata$steps, list(mydata$interval, mydata$wd_we), mean))
 df$interval <- rownames(df)
@@ -197,7 +186,6 @@ we$cat<-"weekend"
 colnames(we)<-c("interval", "steps", "wd_we")
 
 myw<-rbind(wd,we)
-plot(myw$interval, myw$steps, type = "l")
 xyplot(as.numeric(myw$steps) ~ as.numeric(myw$interval)| as.factor(myw$wd_we), layout = c(1,2), col = "red", type = "l")
 ```
 
