@@ -1,21 +1,14 @@
 ---
-output:
-  html_document: default
-  output: github_document
-  pdf_document: default
-author: "Joerg Heintz"
-date: "3/9/2017"
 title: "Reproducible Research Project Week 2"
+output: github_document
 ---
 
-###Setting global options
-```{r setoptions, echo = TRUE}
-knitr::opts_chunk$set(echo = TRUE)
-setwd("/Users/joergheintz/Documents/08_MPHPHI/11_Coursera/Coursera_ReproduciableResearch/week2")
-```
+
+
 
 ###Read "activity.csv"
 ```{r}
+setwd("/Users/joergheintz/Documents/08_MPHPHI/11_Coursera/Coursera_ReproduciableResearch/week2")
 mydata<-read.csv("activity.csv", header = TRUE)
 ```
 
@@ -189,3 +182,4 @@ colnames(we)<-c("interval", "steps", "wd_we")
 myw<-rbind(wd,we)
 xyplot(as.numeric(myw$steps) ~ as.numeric(myw$interval)| as.factor(myw$wd_we), layout = c(1,2), col = "red", type = "l")
 ```
+
